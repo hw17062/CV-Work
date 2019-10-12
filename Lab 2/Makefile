@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Correct
+# Target rules for targets named convolution
 
 # Build rule for target.
-Correct: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Correct
-.PHONY : Correct
+convolution: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 convolution
+.PHONY : convolution
 
 # fast build rule for target.
-Correct/fast:
-	$(MAKE) -f CMakeFiles/Correct.dir/build.make CMakeFiles/Correct.dir/build
-.PHONY : Correct/fast
+convolution/fast:
+	$(MAKE) -f CMakeFiles/convolution.dir/build.make CMakeFiles/convolution.dir/build
+.PHONY : convolution/fast
 
-correct.o: correct.cpp.o
+convolution.o: convolution.cpp.o
 
-.PHONY : correct.o
+.PHONY : convolution.o
 
 # target to build an object file
-correct.cpp.o:
-	$(MAKE) -f CMakeFiles/Correct.dir/build.make CMakeFiles/Correct.dir/correct.cpp.o
-.PHONY : correct.cpp.o
+convolution.cpp.o:
+	$(MAKE) -f CMakeFiles/convolution.dir/build.make CMakeFiles/convolution.dir/convolution.cpp.o
+.PHONY : convolution.cpp.o
 
-correct.i: correct.cpp.i
+convolution.i: convolution.cpp.i
 
-.PHONY : correct.i
+.PHONY : convolution.i
 
 # target to preprocess a source file
-correct.cpp.i:
-	$(MAKE) -f CMakeFiles/Correct.dir/build.make CMakeFiles/Correct.dir/correct.cpp.i
-.PHONY : correct.cpp.i
+convolution.cpp.i:
+	$(MAKE) -f CMakeFiles/convolution.dir/build.make CMakeFiles/convolution.dir/convolution.cpp.i
+.PHONY : convolution.cpp.i
 
-correct.s: correct.cpp.s
+convolution.s: convolution.cpp.s
 
-.PHONY : correct.s
+.PHONY : convolution.s
 
 # target to generate assembly for a file
-correct.cpp.s:
-	$(MAKE) -f CMakeFiles/Correct.dir/build.make CMakeFiles/Correct.dir/correct.cpp.s
-.PHONY : correct.cpp.s
+convolution.cpp.s:
+	$(MAKE) -f CMakeFiles/convolution.dir/build.make CMakeFiles/convolution.dir/convolution.cpp.s
+.PHONY : convolution.cpp.s
 
 # Help Target
 help:
@@ -157,11 +157,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... Correct"
+	@echo "... convolution"
 	@echo "... edit_cache"
-	@echo "... correct.o"
-	@echo "... correct.i"
-	@echo "... correct.s"
+	@echo "... convolution.o"
+	@echo "... convolution.i"
+	@echo "... convolution.s"
 .PHONY : help
 
 
