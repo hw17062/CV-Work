@@ -17,7 +17,8 @@ int main(int argc, char* argv[]) {
   image.convertTo(image, CV_32F);
 
   //create kernel image
-  Mat kernel(3,3, CV_32F, Scalar(1,1,1));
+  // Mat C = (Mat_<double>(3,3) << 0, -1, 0, -1, 5, -1, 0, -1, 0);
+  Mat kernel = (Mat_<float>(3,3) << -1,-1,-1,-1,16,-1,-1,-1,-1);
   kernel = kernel / 9;
 
   Mat section;
@@ -88,7 +89,7 @@ int main(int argc, char* argv[]) {
   editedimage.convertTo(editedimage, CV_8UC1);
   //imshow("Display window", editedimage);
 
-  imwrite("convolution_grey.jpg", editedimage);
+  imwrite("sharp_grey.jpg", editedimage);
 
   //wait for a key press until returning from the program
   //waitKey(0);
