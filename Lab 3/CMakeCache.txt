@@ -130,7 +130,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=imageOne
+CMAKE_PROJECT_NAME:STATIC=imageTwo
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -189,6 +189,12 @@ imageOne_BINARY_DIR:STATIC=/home/hobie/Documents/Comp Vision/Lab 3
 
 //Value Computed by CMake
 imageOne_SOURCE_DIR:STATIC=/home/hobie/Documents/Comp Vision/Lab 3
+
+//Value Computed by CMake
+imageTwo_BINARY_DIR:STATIC=/home/hobie/Documents/Comp Vision/Lab 3
+
+//Value Computed by CMake
+imageTwo_SOURCE_DIR:STATIC=/home/hobie/Documents/Comp Vision/Lab 3
 
 
 ########################

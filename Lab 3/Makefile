@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named imageOne
+# Target rules for targets named imageTwo
 
 # Build rule for target.
-imageOne: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 imageOne
-.PHONY : imageOne
+imageTwo: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 imageTwo
+.PHONY : imageTwo
 
 # fast build rule for target.
-imageOne/fast:
-	$(MAKE) -f CMakeFiles/imageOne.dir/build.make CMakeFiles/imageOne.dir/build
-.PHONY : imageOne/fast
+imageTwo/fast:
+	$(MAKE) -f CMakeFiles/imageTwo.dir/build.make CMakeFiles/imageTwo.dir/build
+.PHONY : imageTwo/fast
 
-imageOne.o: imageOne.cpp.o
+ImageTwo.o: ImageTwo.cpp.o
 
-.PHONY : imageOne.o
+.PHONY : ImageTwo.o
 
 # target to build an object file
-imageOne.cpp.o:
-	$(MAKE) -f CMakeFiles/imageOne.dir/build.make CMakeFiles/imageOne.dir/imageOne.cpp.o
-.PHONY : imageOne.cpp.o
+ImageTwo.cpp.o:
+	$(MAKE) -f CMakeFiles/imageTwo.dir/build.make CMakeFiles/imageTwo.dir/ImageTwo.cpp.o
+.PHONY : ImageTwo.cpp.o
 
-imageOne.i: imageOne.cpp.i
+ImageTwo.i: ImageTwo.cpp.i
 
-.PHONY : imageOne.i
+.PHONY : ImageTwo.i
 
 # target to preprocess a source file
-imageOne.cpp.i:
-	$(MAKE) -f CMakeFiles/imageOne.dir/build.make CMakeFiles/imageOne.dir/imageOne.cpp.i
-.PHONY : imageOne.cpp.i
+ImageTwo.cpp.i:
+	$(MAKE) -f CMakeFiles/imageTwo.dir/build.make CMakeFiles/imageTwo.dir/ImageTwo.cpp.i
+.PHONY : ImageTwo.cpp.i
 
-imageOne.s: imageOne.cpp.s
+ImageTwo.s: ImageTwo.cpp.s
 
-.PHONY : imageOne.s
+.PHONY : ImageTwo.s
 
 # target to generate assembly for a file
-imageOne.cpp.s:
-	$(MAKE) -f CMakeFiles/imageOne.dir/build.make CMakeFiles/imageOne.dir/imageOne.cpp.s
-.PHONY : imageOne.cpp.s
+ImageTwo.cpp.s:
+	$(MAKE) -f CMakeFiles/imageTwo.dir/build.make CMakeFiles/imageTwo.dir/ImageTwo.cpp.s
+.PHONY : ImageTwo.cpp.s
 
 # Help Target
 help:
@@ -157,11 +157,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... imageOne"
+	@echo "... imageTwo"
 	@echo "... edit_cache"
-	@echo "... imageOne.o"
-	@echo "... imageOne.i"
-	@echo "... imageOne.s"
+	@echo "... ImageTwo.o"
+	@echo "... ImageTwo.i"
+	@echo "... ImageTwo.s"
 .PHONY : help
 
 
@@ -175,4 +175,3 @@ help:
 cmake_check_build_system:
 	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
-
