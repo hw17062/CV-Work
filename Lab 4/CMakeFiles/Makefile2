@@ -54,45 +54,45 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/hobie/Documents/Comp Vision/Lab 3"
+CMAKE_SOURCE_DIR = "/home/hobie/Documents/Comp Vision/Lab 4"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/hobie/Documents/Comp Vision/Lab 3"
+CMAKE_BINARY_DIR = "/home/hobie/Documents/Comp Vision/Lab 4"
 
 #=============================================================================
-# Target rules for target CMakeFiles/imageOne.dir
+# Target rules for target CMakeFiles/Hough.dir
 
 # All Build rule for target.
-CMakeFiles/imageOne.dir/all:
-	$(MAKE) -f CMakeFiles/imageOne.dir/build.make CMakeFiles/imageOne.dir/depend
-	$(MAKE) -f CMakeFiles/imageOne.dir/build.make CMakeFiles/imageOne.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/hobie/Documents/Comp Vision/Lab 3/CMakeFiles" --progress-num=1,2 "Built target imageOne"
-.PHONY : CMakeFiles/imageOne.dir/all
+CMakeFiles/Hough.dir/all:
+	$(MAKE) -f CMakeFiles/Hough.dir/build.make CMakeFiles/Hough.dir/depend
+	$(MAKE) -f CMakeFiles/Hough.dir/build.make CMakeFiles/Hough.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/hobie/Documents/Comp Vision/Lab 4/CMakeFiles" --progress-num=1,2 "Built target Hough"
+.PHONY : CMakeFiles/Hough.dir/all
 
 # Include target in all.
-all: CMakeFiles/imageOne.dir/all
+all: CMakeFiles/Hough.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/imageOne.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/hobie/Documents/Comp Vision/Lab 3/CMakeFiles" 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/imageOne.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/hobie/Documents/Comp Vision/Lab 3/CMakeFiles" 0
-.PHONY : CMakeFiles/imageOne.dir/rule
+CMakeFiles/Hough.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/hobie/Documents/Comp Vision/Lab 4/CMakeFiles" 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Hough.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/hobie/Documents/Comp Vision/Lab 4/CMakeFiles" 0
+.PHONY : CMakeFiles/Hough.dir/rule
 
 # Convenience name for target.
-imageOne: CMakeFiles/imageOne.dir/rule
+Hough: CMakeFiles/Hough.dir/rule
 
-.PHONY : imageOne
-
-# clean rule for target.
-CMakeFiles/imageOne.dir/clean:
-	$(MAKE) -f CMakeFiles/imageOne.dir/build.make CMakeFiles/imageOne.dir/clean
-.PHONY : CMakeFiles/imageOne.dir/clean
+.PHONY : Hough
 
 # clean rule for target.
-clean: CMakeFiles/imageOne.dir/clean
+CMakeFiles/Hough.dir/clean:
+	$(MAKE) -f CMakeFiles/Hough.dir/build.make CMakeFiles/Hough.dir/clean
+.PHONY : CMakeFiles/Hough.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/Hough.dir/clean
 
 .PHONY : clean
 

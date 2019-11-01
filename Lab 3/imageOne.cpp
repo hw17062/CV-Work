@@ -15,6 +15,9 @@ int main(){
   //load image into grey
   Mat image = imread("car1.png", 1);
   Mat grey_img;
+  Mat dest;
+  Mat saturated;
+  Mat mask;
   cvtColor( image, grey_img, CV_BGR2GRAY );
 
   //convert to float of convolve
@@ -27,21 +30,16 @@ int main(){
 
   //get blurred image
   Mat blurred = blur(image);
-  Mat mask;
 
+  multiply(grey_img, 3, saturated);
 
-  //filter2D(image, blurred, CV_32F, kernel);
-  printf("made it!\n" );
+  //mask = grey_img- blurred;
 
-  //add(grey_img, grey_img, grey_img);
-  //subtract(grey_img, blurred, mask);
-  //image.convertTo(image, CV_8UC1);
-  //imshow("Display window", editedimage);
+  dest = grey_img + grey_img - blurred;
 
-  addWeighted(grey_img, 1.8, blurred, -.4, 0, grey_img);
-
-  imwrite("mask.jpg", mask);
-  imwrite("img1_2_m1.jpg", grey_img);
+  //imwrite("mask.jpg", mask);
+  imwrite("blurred.jpg", blurred);
+  imwrite("img1_fixed.jpg", dest);
 
   //wait for a key press until returning from the program
   //waitKey(0);

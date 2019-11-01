@@ -32,9 +32,9 @@ Mat blur( Mat image )
  cvtColor( image, gray_image, CV_BGR2GRAY );
 
  Mat carBlurred;
- GaussianBlur(gray_image,3,carBlurred);
+ GaussianBlur(gray_image,10,carBlurred);
 
- imwrite( "blur.jpg", carBlurred );
+ //imwrite( "blur.jpg", carBlurred );
 
  return carBlurred;
 }

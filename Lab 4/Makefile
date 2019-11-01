@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/hobie/Documents/Comp Vision/Lab 3"
+CMAKE_SOURCE_DIR = "/home/hobie/Documents/Comp Vision/Lab 4"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/hobie/Documents/Comp Vision/Lab 3"
+CMAKE_BINARY_DIR = "/home/hobie/Documents/Comp Vision/Lab 4"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/hobie/Documents/Comp Vision/Lab 3/CMakeFiles" "/home/hobie/Documents/Comp Vision/Lab 3/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/hobie/Documents/Comp Vision/Lab 4/CMakeFiles" "/home/hobie/Documents/Comp Vision/Lab 4/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/hobie/Documents/Comp Vision/Lab 3/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/hobie/Documents/Comp Vision/Lab 4/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named imageOne
+# Target rules for targets named Hough
 
 # Build rule for target.
-imageOne: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 imageOne
-.PHONY : imageOne
+Hough: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Hough
+.PHONY : Hough
 
 # fast build rule for target.
-imageOne/fast:
-	$(MAKE) -f CMakeFiles/imageOne.dir/build.make CMakeFiles/imageOne.dir/build
-.PHONY : imageOne/fast
+Hough/fast:
+	$(MAKE) -f CMakeFiles/Hough.dir/build.make CMakeFiles/Hough.dir/build
+.PHONY : Hough/fast
 
-imageOne.o: imageOne.cpp.o
+Hough.o: Hough.cpp.o
 
-.PHONY : imageOne.o
+.PHONY : Hough.o
 
 # target to build an object file
-imageOne.cpp.o:
-	$(MAKE) -f CMakeFiles/imageOne.dir/build.make CMakeFiles/imageOne.dir/imageOne.cpp.o
-.PHONY : imageOne.cpp.o
+Hough.cpp.o:
+	$(MAKE) -f CMakeFiles/Hough.dir/build.make CMakeFiles/Hough.dir/Hough.cpp.o
+.PHONY : Hough.cpp.o
 
-imageOne.i: imageOne.cpp.i
+Hough.i: Hough.cpp.i
 
-.PHONY : imageOne.i
+.PHONY : Hough.i
 
 # target to preprocess a source file
-imageOne.cpp.i:
-	$(MAKE) -f CMakeFiles/imageOne.dir/build.make CMakeFiles/imageOne.dir/imageOne.cpp.i
-.PHONY : imageOne.cpp.i
+Hough.cpp.i:
+	$(MAKE) -f CMakeFiles/Hough.dir/build.make CMakeFiles/Hough.dir/Hough.cpp.i
+.PHONY : Hough.cpp.i
 
-imageOne.s: imageOne.cpp.s
+Hough.s: Hough.cpp.s
 
-.PHONY : imageOne.s
+.PHONY : Hough.s
 
 # target to generate assembly for a file
-imageOne.cpp.s:
-	$(MAKE) -f CMakeFiles/imageOne.dir/build.make CMakeFiles/imageOne.dir/imageOne.cpp.s
-.PHONY : imageOne.cpp.s
+Hough.cpp.s:
+	$(MAKE) -f CMakeFiles/Hough.dir/build.make CMakeFiles/Hough.dir/Hough.cpp.s
+.PHONY : Hough.cpp.s
 
 # Help Target
 help:
@@ -157,11 +157,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... imageOne"
+	@echo "... Hough"
 	@echo "... edit_cache"
-	@echo "... imageOne.o"
-	@echo "... imageOne.i"
-	@echo "... imageOne.s"
+	@echo "... Hough.o"
+	@echo "... Hough.i"
+	@echo "... Hough.s"
 .PHONY : help
 
 
