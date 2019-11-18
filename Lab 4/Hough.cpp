@@ -9,33 +9,46 @@
 using namespace cv;
 using namespace std;
 
+// This will be the hand written function for convolution of an image
 Mat convolution (Mat base_img, Mat kernel);
 
 int main(){
 
+  // read img
   Mat image = imread("coins1.png", 0);
-  //Mat kernel = (Mat_<float>(3,3) << 1,2,1,0,0,0,-1,-2,-1);
-  Mat kernel = (Mat_<float>(3,3) << -1,-1,-1,0,0,0,1,1,1);
 
-  Mat test = convolution(image, kernel);
+  // set up tranform kernel
+  Mat yKernel = (Mat_<float>(3,3) << -1,0,1,-2,0,2,-1,0,1);
+  Mat xKernel = (Mat_<float>(3,3) << -1,-2,-1,0,0,0,1,2,1);
 
-  //cout << "section = " << endl << " " << test << endl << endl;
-  test.convertTo(test,CV_8UC1);
+  Mat ys = convolution(image, xKernel);
+  Mat xs = convolution(image, yKernel);
 
+  xs.convertTo(xs,CV_8UC1);
+  ys.convertTo(ys,CV_8UC1);
 
+  Mat combo = xs + ys;
   //construct a window for image display
   namedWindow("Display window", WINDOW_AUTOSIZE);
 
   //visualise the loaded image in the window
-  imshow("Display window", test);
+  imshow("Display window", xs);
 
   //wait for a key press until returning from the program
   waitKey(0);
 
+  imshow("Display window", ys);
+  waitKey(0);
+
+  imshow("Display window", combo);
+  waitKey(0);
+
   //free memory occupied by image
   image.release();
-  kernel.release();
-  test.release();
+  xKernel.release();
+  yKernel.release();
+  xs.release();
+  ys.release();
   return 0;
 }
 
@@ -55,20 +68,27 @@ Mat convolution(Mat base_img, Mat kernel){
       for (int i = -1; i <= 1; i++){
         for (int j = -1; j <= 1; j++){
           //check if you go out of image range
-          if (!(y+i > 0 || y+i > base_img.rows || x+j < 0 || x+j > base_img.cols)){
-            sum += (base_img.at<uchar>(y+i,x+j) * kernel.at<float>(i,j));
+          if (!(y+i < 0 || y+i > base_img.rows || x+j < 0 || x+j > base_img.cols)){
+            sum += (base_img.at<uchar>(y+i,x+j) * kernel.at<float>(i+1,j+1));
           }
         }
       }
+      /*
+      if (sum > 255){
+        sum = 255;
+      } else if (sum < 0){
+        sum = 0;
+      }
+      */
+
       //set the sum to the new image
       new_img.at<float>(y,x) = sum;
-      //printf("%f\n",sum );
     }
   }
 
-  Mat norm_img;
+  //Mat norm_img;
   //Norm image
-  normalize(new_img, norm_img, 0, 255, NORM_MINMAX);
+  //normalize(new_img, norm_img, 0, 255, NORM_MINMAX);
 
-  return norm_img;
+  return new_img;
 }
