@@ -24,10 +24,21 @@ int main(){
   Mat ys = convolution(image, xKernel);
   Mat xs = convolution(image, yKernel);
 
+  printf("finished conv\n");
+  Mat grad;
+  grad = xs.mul(xs) + ys.mul(ys);
+
+  sqrt(grad, grad);
+  normalize(grad, grad, 0, 255, NORM_MINMAX);
+
+
   xs.convertTo(xs,CV_8UC1);
   ys.convertTo(ys,CV_8UC1);
+  grad.convertTo(grad,CV_8UC1);
 
-  Mat combo = xs + ys;
+  // Now start working on Hough transformation
+
+
   //construct a window for image display
   namedWindow("Display window", WINDOW_AUTOSIZE);
 
@@ -40,7 +51,7 @@ int main(){
   imshow("Display window", ys);
   waitKey(0);
 
-  imshow("Display window", combo);
+  imshow("Display window", grad);
   waitKey(0);
 
   //free memory occupied by image
@@ -49,6 +60,8 @@ int main(){
   yKernel.release();
   xs.release();
   ys.release();
+  grad.release();
+  
   return 0;
 }
 
@@ -73,13 +86,6 @@ Mat convolution(Mat base_img, Mat kernel){
           }
         }
       }
-      /*
-      if (sum > 255){
-        sum = 255;
-      } else if (sum < 0){
-        sum = 0;
-      }
-      */
 
       //set the sum to the new image
       new_img.at<float>(y,x) = sum;
@@ -88,7 +94,7 @@ Mat convolution(Mat base_img, Mat kernel){
 
   //Mat norm_img;
   //Norm image
-  //normalize(new_img, norm_img, 0, 255, NORM_MINMAX);
+  //normalize(new_img, new_img, 0, 255, NORM_MINMAX);
 
   return new_img;
 }
