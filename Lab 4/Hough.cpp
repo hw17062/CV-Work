@@ -4,15 +4,50 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
 #include <iostream>
-#include <math.h>       /* round, floor, ceil, trunc */
+#include <math.h>       /* round, floor, ceil, trunc, atan */
+
+#define PI 3.14159265
 
 using namespace cv;
 using namespace std;
 
+
+
 // This will be the hand written function for convolution of an image
 Mat convolution (Mat base_img, Mat kernel);
+void solbet();
+void hough(Mat xs, Mat ys, Mat mag, Mat grad);
+Mat mat2gray(const cv::Mat&);
+void threshold(Mat& img);
 
 int main(){
+  solbet();
+  return 0;
+}
+
+//normalisied image for grey image showing/saving
+Mat mat2gray(const cv::Mat& src)
+{
+    Mat dst;
+    normalize(src, dst, 0.0, 255.0, cv::NORM_MINMAX, CV_8U);
+
+    return dst;
+}
+
+//thresholds the image sent to it. if above = 255 else = 0
+void threshold(Mat& img){
+  img = mat2gray(img);
+  float threshold = 65;
+  for (int y = 0; y < img.rows; y++){
+    for (int x = 0; x < img.cols; x++){
+      if (img.at<uchar>(y,x) > threshold)  img.at<uchar>(y,x) = 255;
+      else img.at<uchar>(y,x) = 0;
+    }
+  }
+}
+
+
+void solbet(){
 
   // read img
   Mat image = imread("coins1.png", 0);
@@ -24,35 +59,47 @@ int main(){
   Mat ys = convolution(image, xKernel);
   Mat xs = convolution(image, yKernel);
 
-  printf("finished conv\n");
-  Mat grad;
-  grad = xs.mul(xs) + ys.mul(ys);
 
-  sqrt(grad, grad);
-  normalize(grad, grad, 0, 255, NORM_MINMAX);
+  // now Calc the Magnitude
+  Mat mag;
+  mag = xs.mul(xs) + ys.mul(ys);
 
+  sqrt(mag, mag);
 
-  xs.convertTo(xs,CV_8UC1);
-  ys.convertTo(ys,CV_8UC1);
-  grad.convertTo(grad,CV_8UC1);
+  // Now calc the gradient
+  Mat grad = Mat::zeros(xs.rows, xs.cols, CV_32F);
 
-  // Now start working on Hough transformation
-
+  //loop through performing atan() to get the direction
+  for (int y = 0; y < grad.rows; y++){
+    for (int x = 0; x < grad.cols; x++){
+      grad.at<float>(y,x) = abs(atan2(ys.at<float>(y,x), xs.at<float>(y,x)));
+      //grad.at<float>(y,x) = (grad.at<float>(y,x) *180 / PI);
+    }
+  }
+  //Mat gradN;
+  //gradN.convertTo(gradN,CV_8UC1);
 
   //construct a window for image display
   namedWindow("Display window", WINDOW_AUTOSIZE);
 
   //visualise the loaded image in the window
-  imshow("Display window", xs);
 
-  //wait for a key press until returning from the program
-  waitKey(0);
+  // imshow("Display window", image);
+  // waitKey(0);
+  //
+  // imshow("Display window", mat2gray(xs));
+  // waitKey(0);
+  //
+  // imshow("Display window", mat2gray(ys));
+  // waitKey(0);
+  //
+  // imshow("Display window", mat2gray(mag));
+  // waitKey(0);
+  //
+  // imshow("Display window", mat2gray(grad));
+  // waitKey(0);
 
-  imshow("Display window", ys);
-  waitKey(0);
-
-  imshow("Display window", grad);
-  waitKey(0);
+  hough(xs, ys, mag, grad);
 
   //free memory occupied by image
   image.release();
@@ -60,9 +107,16 @@ int main(){
   yKernel.release();
   xs.release();
   ys.release();
+  mag.release();
   grad.release();
-  
-  return 0;
+
+}
+
+void hough(Mat xs, Mat ys, Mat mag, Mat grad){
+  threshold(mag);
+
+  imshow("Display window", mat2gray(mag));
+  waitKey(0);
 }
 
 Mat convolution(Mat base_img, Mat kernel){
