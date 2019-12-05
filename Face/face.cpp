@@ -42,12 +42,12 @@ int main( int argc, const char** argv )
 	*			dart 13 =Point(420,130),Point(520,260)
 	*/
 
-	//int x = 320;
-	//int y = 80;
-	//rectangle( frame , Point(x,y),
-	//				 Point(x + 70,y + 70),
-	//				 Scalar( 255, 60, 60 ),
-	//        2);
+	int x = 416;
+	int y = 115;
+	rectangle( frame , Point(x,y),
+					 Point(x + 117,y + 147),
+					 Scalar( 30, 30, 255 ),
+	        2);
 	// 4. Save Result Image
 	imwrite( "detected.jpg", frame );
 
@@ -57,29 +57,21 @@ int main( int argc, const char** argv )
 // This function takes all the faces found by viola-jones, and does IOU with the ground truths
 // it then returns the IOU value as a float
 vector<float> iouVal(vector<Rect> faces){
-	float inter;		//store intersect area
 	vector<float> IOUs;	//store the IOU values of a face compared to all the truths
 	vector<Rect> truths; //store the ground truth co-ordinates
 
 	vector<float> bestIOUs;		//store the best result for a give face vs truth
 
 	// declare the ground truths
-	truths.push_back(Rect(340,190,100,90));
+	truths.push_back(Rect(416,115,117,147));
 	for ( int j = 0; j < faces.size(); j++ ){	//loop through the truth boundries
 		IOUs.clear();
 		for( int i = 0; i < truths.size(); i++ )		// loop through the generated boundries
 		{
-			float xA = max(faces[j].x, 										truths[i].x);
-			float yA = max(faces[j].y, 										truths[i].y);
-			float xB = min(faces[j].x + faces[i].width, 	truths[i].x + truths[j].width);
-			float yB = min(faces[j].y + faces[i].height, 	truths[i].y + truths[j].height);
-
-			inter = max(0.0f, xB - xA + 1) * max(0.0f, yB - yA + 1);
-
-			float areaA = (faces[j].x + faces[j].width - faces[j].x + 1) * (faces[j].y + faces[j].height - faces[j].y + 1);
-			float areaB = (truths[i].x + truths[i].width - truths[i].x + 1) * (truths[i].y + truths[i].height - truths[i].y + 1);
-
-			IOUs.push_back(inter / float(areaA + areaB - inter));
+			Rect inter = faces[j] & truths[i];	//get intersection
+			Rect unions = faces[j] | truths[i];	//get union
+			//printf("Inter area: %d.  Union area: %d.   IOU: %f\n", inter.area(), unions.area(), (float)inter.area()/(float)unions.area());
+			IOUs.push_back((float)inter.area() / (float)unions.area());
 	 	}
 		bestIOUs.push_back(*max_element(IOUs.begin(),IOUs.end()));
 	}
@@ -123,10 +115,10 @@ void detectAndDisplay( Mat frame )
 		}
 
 	}
-	float recall = TP/faces.size();
-	float prec	= TP / (TP + FP);
+	float recall = (float)TP/(float)faces.size();
+	float prec	= (float)TP / ((float)TP + (float)FP);
 
-	float FOne = 2 * ((prec * recall) / (prec + recall));
+	float FOne = 2.0f * ((prec * recall) / (prec + recall));
 
 	printf("Recall [TPR] = %f\n",recall);
 	printf("precision = %f\n",prec);
