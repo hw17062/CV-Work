@@ -42,12 +42,72 @@ int main( int argc, const char** argv )
 	*			dart 13 =Point(420,130),Point(520,260)
 	*/
 
-	int x = 416;
-	int y = 115;
+	int x = 66;
+	int y = 139;
 	rectangle( frame , Point(x,y),
-					 Point(x + 117,y + 147),
+					 Point(x + 52,y + 64),
 					 Scalar( 30, 30, 255 ),
 	        2);
+	x = 55;
+	y = 249;
+	rectangle( frame , Point(x,y),
+					 Point(x + 57,y + 70),
+					 Scalar( 30, 30, 255 ),
+	        2);
+	x = 194;
+	y = 216;
+	rectangle( frame , Point(x,y),
+					 Point(x + 54,y + 68),
+					 Scalar( 30, 30, 255 ),
+	        2);
+		x = 254;
+		y = 169;
+		rectangle( frame , Point(x,y),
+						 Point(x + 48,y + 60),
+						 Scalar( 30, 30, 255 ),
+		        2);
+		x = 295;
+		y = 243;
+		rectangle( frame , Point(x,y),
+						 Point(x + 48,y + 67),
+						 Scalar( 30, 30, 255 ),
+		        2);
+		x = 383;
+		y = 192;
+		rectangle( frame , Point(x,y),
+						 Point(x + 52,y + 55),
+						 Scalar( 30, 30, 255 ),
+		        2);
+		x = 430;
+		y = 235;
+		rectangle( frame , Point(x,y),
+						 Point(x + 52,y + 68),
+						 Scalar( 30, 30, 255 ),
+		        2);
+		x = 518;
+		y = 182;
+		rectangle( frame , Point(x,y),
+						 Point(x + 46,y + 55),
+						 Scalar( 30, 30, 255 ),
+		        2);
+			x = 563;
+			y = 244;
+			rectangle( frame , Point(x,y),
+							 Point(x + 51,y + 72),
+							 Scalar( 30, 30, 255 ),
+			        2);
+			x = 650;
+			y = 196;
+			rectangle( frame , Point(x,y),
+							 Point(x + 46,y + 50),
+							 Scalar( 30, 30, 255 ),
+			        2);
+			x = 682;
+			y = 246;
+			rectangle( frame , Point(x,y),
+							 Point(x + 49,y + 64),
+							 Scalar( 30, 30, 255 ),
+			        2);
 	// 4. Save Result Image
 	imwrite( "detected.jpg", frame );
 
@@ -63,7 +123,17 @@ vector<float> iouVal(vector<Rect> faces){
 	vector<float> bestIOUs;		//store the best result for a give face vs truth
 
 	// declare the ground truths
-	truths.push_back(Rect(416,115,117,147));
+	truths.push_back(Rect(66,139,52,64));
+	truths.push_back(Rect(55,249,57,70));
+	truths.push_back(Rect(194,216,54,68));
+	truths.push_back(Rect(254,169,48,60));
+	truths.push_back(Rect(295,243,48,67));
+	truths.push_back(Rect(383,192,52,55));
+	truths.push_back(Rect(430,235,52,68));
+	truths.push_back(Rect(518,182,46,55));
+	truths.push_back(Rect(563,244,51,72));
+	truths.push_back(Rect(650,196,46,50));
+	truths.push_back(Rect(682,246,49,64));
 	for ( int j = 0; j < faces.size(); j++ ){	//loop through the truth boundries
 		IOUs.clear();
 		for( int i = 0; i < truths.size(); i++ )		// loop through the generated boundries
@@ -106,16 +176,18 @@ void detectAndDisplay( Mat frame )
 	int FP = 0;	//count flase positives
 	//get recall (TPR)
 	for (int i = 0; i < acc.size(); i++){
-		if (acc[i] > 0.5){	//if UOI val is > 0.5 count as true positive
+		if (acc[i] > 0.4){	//if UOI val is > 0.5 count as true positive
 			TP++;
-			printf("TP found: %f accuracy\n", acc[i]);
+			printf("True P found @ (%d,%d,%d,%d): %f accuracy\n", acc[i],faces[i].x,faces[i].y,faces[i].width,faces[i].height);
 		}else {
 			FP++;
-			printf("FP found: %f accuracy\n", acc[i]);
+			printf("False P found @ (%d,%d,%d,%d): %f accuracy\n", acc[i],faces[i].x,faces[i].y,faces[i].width,faces[i].height);
 		}
 
 	}
-	float recall = (float)TP/(float)faces.size();
+	float noOfTruths = 11;
+
+	float recall = (float)TP/noOfTruths;
 	float prec	= (float)TP / ((float)TP + (float)FP);
 
 	float FOne = 2.0f * ((prec * recall) / (prec + recall));
