@@ -109,7 +109,27 @@ void detectAndDisplay( Mat frame )
 	}
 
 	vector<float> acc = iouVal(faces);
+
+	int TP = 0;	//count true positives
+	int FP = 0;	//count flase positives
+	//get recall (TPR)
 	for (int i = 0; i < acc.size(); i++){
-		printf("%f accuracy\n", acc[i]);
+		if (acc[i] > 0.5){	//if UOI val is > 0.5 count as true positive
+			TP++;
+			printf("TP found: %f accuracy\n", acc[i]);
+		}else {
+			FP++;
+			printf("FP found: %f accuracy\n", acc[i]);
+		}
+
 	}
+	float recall = TP/faces.size();
+	float prec	= TP / (TP + FP);
+
+	float FOne = 2 * ((prec * recall) / (prec + recall));
+
+	printf("Recall [TPR] = %f\n",recall);
+	printf("precision = %f\n",prec);
+	printf("F1 score = %f\n",FOne);
+
 }
