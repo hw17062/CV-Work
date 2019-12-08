@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/hobie/Documents/Comp Vision/Face/face.cpp" "/home/hobie/Documents/Comp Vision/Face/CMakeFiles/Face.dir/face.cpp.o"
+  "/home/hobie/Documents/Comp Vision/Face/facev2.cpp" "/home/hobie/Documents/Comp Vision/Face/CMakeFiles/Face.dir/facev2.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

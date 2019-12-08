@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Face.dir/face.cpp.o"
+  "CMakeFiles/Face.dir/facev2.cpp.o"
   "Face.pdb"
   "Face"
 )

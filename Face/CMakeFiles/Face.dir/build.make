@@ -57,38 +57,38 @@ include CMakeFiles/Face.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Face.dir/flags.make
 
-CMakeFiles/Face.dir/face.cpp.o: CMakeFiles/Face.dir/flags.make
-CMakeFiles/Face.dir/face.cpp.o: face.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/hobie/Documents/Comp Vision/Face/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Face.dir/face.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Face.dir/face.cpp.o -c "/home/hobie/Documents/Comp Vision/Face/face.cpp"
+CMakeFiles/Face.dir/facev2.cpp.o: CMakeFiles/Face.dir/flags.make
+CMakeFiles/Face.dir/facev2.cpp.o: facev2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/hobie/Documents/Comp Vision/Face/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Face.dir/facev2.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Face.dir/facev2.cpp.o -c "/home/hobie/Documents/Comp Vision/Face/facev2.cpp"
 
-CMakeFiles/Face.dir/face.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Face.dir/face.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/hobie/Documents/Comp Vision/Face/face.cpp" > CMakeFiles/Face.dir/face.cpp.i
+CMakeFiles/Face.dir/facev2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Face.dir/facev2.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/hobie/Documents/Comp Vision/Face/facev2.cpp" > CMakeFiles/Face.dir/facev2.cpp.i
 
-CMakeFiles/Face.dir/face.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Face.dir/face.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/hobie/Documents/Comp Vision/Face/face.cpp" -o CMakeFiles/Face.dir/face.cpp.s
+CMakeFiles/Face.dir/facev2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Face.dir/facev2.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/hobie/Documents/Comp Vision/Face/facev2.cpp" -o CMakeFiles/Face.dir/facev2.cpp.s
 
-CMakeFiles/Face.dir/face.cpp.o.requires:
+CMakeFiles/Face.dir/facev2.cpp.o.requires:
 
-.PHONY : CMakeFiles/Face.dir/face.cpp.o.requires
+.PHONY : CMakeFiles/Face.dir/facev2.cpp.o.requires
 
-CMakeFiles/Face.dir/face.cpp.o.provides: CMakeFiles/Face.dir/face.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Face.dir/build.make CMakeFiles/Face.dir/face.cpp.o.provides.build
-.PHONY : CMakeFiles/Face.dir/face.cpp.o.provides
+CMakeFiles/Face.dir/facev2.cpp.o.provides: CMakeFiles/Face.dir/facev2.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Face.dir/build.make CMakeFiles/Face.dir/facev2.cpp.o.provides.build
+.PHONY : CMakeFiles/Face.dir/facev2.cpp.o.provides
 
-CMakeFiles/Face.dir/face.cpp.o.provides.build: CMakeFiles/Face.dir/face.cpp.o
+CMakeFiles/Face.dir/facev2.cpp.o.provides.build: CMakeFiles/Face.dir/facev2.cpp.o
 
 
 # Object files for target Face
 Face_OBJECTS = \
-"CMakeFiles/Face.dir/face.cpp.o"
+"CMakeFiles/Face.dir/facev2.cpp.o"
 
 # External object files for target Face
 Face_EXTERNAL_OBJECTS =
 
-Face: CMakeFiles/Face.dir/face.cpp.o
+Face: CMakeFiles/Face.dir/facev2.cpp.o
 Face: CMakeFiles/Face.dir/build.make
 Face: /usr/local/lib/libopencv_dnn.so.4.1.1
 Face: /usr/local/lib/libopencv_gapi.so.4.1.1
@@ -114,7 +114,7 @@ CMakeFiles/Face.dir/build: Face
 
 .PHONY : CMakeFiles/Face.dir/build
 
-CMakeFiles/Face.dir/requires: CMakeFiles/Face.dir/face.cpp.o.requires
+CMakeFiles/Face.dir/requires: CMakeFiles/Face.dir/facev2.cpp.o.requires
 
 .PHONY : CMakeFiles/Face.dir/requires
 

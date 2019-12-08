@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/hobie/Documents/Comp Vision/Face/face.cpp
+/home/hobie/Documents/Comp Vision/Face/facev2.cpp
 stdio.h
 -
 opencv2/imgproc/imgproc_c.h

@@ -42,12 +42,22 @@ int main( int argc, const char** argv )
 	*			dart 13 =Point(420,130),Point(520,260)
 	*/
 
-	int x = 66;
-	int y = 139;
+	int x = 472;
+	int y = 216;
+
 	rectangle( frame , Point(x,y),
-					 Point(x + 52,y + 64),
+					 Point(x + 77,y + 106),
 					 Scalar( 30, 30, 255 ),
 	        2);
+	x = 732;
+	y = 186;
+
+	rectangle( frame , Point(x,y),
+					 Point(x + 93,y + 108),
+					 Scalar( 30, 30, 255 ),
+	        2);
+
+	/*
 	x = 55;
 	y = 249;
 	rectangle( frame , Point(x,y),
@@ -108,6 +118,7 @@ int main( int argc, const char** argv )
 							 Point(x + 49,y + 64),
 							 Scalar( 30, 30, 255 ),
 			        2);
+	*/
 	// 4. Save Result Image
 	imwrite( "detected.jpg", frame );
 
@@ -123,6 +134,9 @@ vector<float> iouVal(vector<Rect> faces){
 	vector<float> bestIOUs;		//store the best result for a give face vs truth
 
 	// declare the ground truths
+
+	/* dart5
+
 	truths.push_back(Rect(66,139,52,64));
 	truths.push_back(Rect(55,249,57,70));
 	truths.push_back(Rect(194,216,54,68));
@@ -134,6 +148,15 @@ vector<float> iouVal(vector<Rect> faces){
 	truths.push_back(Rect(563,244,51,72));
 	truths.push_back(Rect(650,196,46,50));
 	truths.push_back(Rect(682,246,49,64));
+	*/
+
+	/*  dart13
+	truths.push_back(Rect(419,118,111,141));
+	*/
+
+	truths.push_back(Rect(472,216,77,106));
+	truths.push_back(Rect(732,186,93,108));
+
 	for ( int j = 0; j < faces.size(); j++ ){	//loop through the truth boundries
 		IOUs.clear();
 		for( int i = 0; i < truths.size(); i++ )		// loop through the generated boundries
@@ -185,7 +208,7 @@ void detectAndDisplay( Mat frame )
 		}
 
 	}
-	float noOfTruths = 11;
+	float noOfTruths = 2;
 
 	float recall = (float)TP/noOfTruths;
 	float prec	= (float)TP / ((float)TP + (float)FP);
