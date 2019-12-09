@@ -1,3 +1,0 @@
-/home/hobie/Documents/Comp Vision/Hobie/CMakeFiles/rebuild_cache.dir
-/home/hobie/Documents/Comp Vision/Hobie/CMakeFiles/Hough.dir
-/home/hobie/Documents/Comp Vision/Hobie/CMakeFiles/edit_cache.dir
