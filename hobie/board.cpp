@@ -14,6 +14,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <math.h>
+#include <string>
 
 using namespace std;
 using namespace cv;
@@ -50,27 +51,76 @@ int main( int argc, const char** argv )
 	// 2. Load the Strong Classifier in a structure called `Cascade'
 	if( !cascade.load( cascade_name ) ){ printf("--(!)Error loading\n"); return -1; };
 	vector<Rect> ground;
+
+	//get image numbers
+	int imageNum;
+	string s = argv[1];
+	if (s.length() == (int)9){
+		imageNum = s[4] - '0';
+	}else if (s.length() == 10){
+		imageNum = (s[4] - '0') * 10 + (s[5] - '0');
+	}
+	// printf("image length %d, image num = %d from %c\n",s.length(), imageNum, s[4]);
 	// Add in ground HoughFoundRect
-	//ground.push_back(Rect(420,0,210,220));   //img0
-	// ground.push_back(Rect(165,100,255,250));   //img1
-	// ground.push_back(Rect(90,85,110,110));     //img2
- 	//ground.push_back(Rect(310,135,90,95));		 //img3
-	// ground.push_back(Rect(155,65,380-155,335-65)); //img4
-	// ground.push_back(Rect(415,125,550-415,270-125));	//img 5
-	 ground.push_back(Rect(205,110,280-205,190-110));	//img 6
-	// ground.push_back(Rect(230,150,410-230,335-140));	//img 7
-	// ground.push_back(Rect(830,200,970-830,350-200));	//img 8
-	// ground.push_back(Rect(60,240,130-60,350-240));	//img 8
-	// ground.push_back(Rect(170,15,465-170,320-15));	//img 9
-	//ground.push_back(Rect(80,90,195-80,230-90));	//img 10
-	// ground.push_back(Rect(575,120,640-575,220-120));	//img 10
-	// ground.push_back(Rect(914,140,955-914,220-130));	//img 10
- 	//ground.push_back(Rect(165,95,240-165,180-95));	//img 11
-	// ground.push_back(Rect(150,60,220-150,230-60));	//img 12
-	// ground.push_back(Rect(255,100,420-255,270-100));	//img 13
-	// ground.push_back(Rect(105,85,260-105,240-85));	//img 14
-	// ground.push_back(Rect(970,80,1125-970,235-80));	//img 14
-	// ground.push_back(Rect(120,35,300-120,210-35));	//img 15
+	switch(imageNum){
+		case 0:
+			ground.push_back(Rect(420,0,210,220));   //img0
+			break;
+		case 1:
+			ground.push_back(Rect(175,110,235,230));   //img1
+			break;
+		case 2:
+			ground.push_back(Rect(90,85,110,110));     //img2
+			break;
+		case 3:
+			ground.push_back(Rect(310,135,90,95));		 //img3
+			break;
+		case 4:
+			ground.push_back(Rect(155,65,380-155,335-65)); //img4
+			break;
+		case 5:
+			ground.push_back(Rect(415,125,550-415,270-125));	//img 5
+			break;
+		case 6:
+			ground.push_back(Rect(205,110,280-205,190-110));	//img 6
+			break;
+		case 7:
+			ground.push_back(Rect(230,150,410-230,335-140));	//img 7
+			break;
+		case 8:
+			ground.push_back(Rect(830,200,970-830,350-200));	//img 8
+			ground.push_back(Rect(60,240,130-60,350-240));	//img 8
+			break;
+		case 9:
+			ground.push_back(Rect(170,15,465-170,320-15));	//img 9
+			break;
+		case 10:
+			ground.push_back(Rect(80,90,195-80,230-90));	//img 10
+			ground.push_back(Rect(575,120,640-575,220-120));	//img 10
+			ground.push_back(Rect(914,140,955-914,220-130));	//img 10
+			break;
+		case 11:
+			ground.push_back(Rect(165,95,240-165,180-95));	//img 11
+			break;
+		case 12:
+			ground.push_back(Rect(150,60,220-150,230-60));	//img 12
+			break;
+		case 13:
+			ground.push_back(Rect(255,100,420-255,270-100));	//img 13
+			break;
+		case 14:
+			ground.push_back(Rect(105,85,260-105,240-85));	//img 14
+			ground.push_back(Rect(970,80,1125-970,235-80));	//img 14
+			break;
+		case 15:
+			ground.push_back(Rect(120,35,300-120,210-35));	//img 15
+			break;
+	}
+ 	//
+	//
+	//
+	//
+	//
 
 	Mat img = frame.clone();
 	Mat img2=img.clone();
@@ -154,10 +204,10 @@ void groundVals(vector<Rect> faces, vector<Rect>ground){
 
 			detect.push_back(Rect(faces[i].x,faces[i].y,faces[i].width,faces[i].width));
 			TP++;
-			printf("True P found @ (%d,%d,%d,%d): %f accuracy\n", bestIOUs[i],faces[i].x,faces[i].y,faces[i].width,faces[i].width);
+			printf("True P found @ (%f,%d,%d,%d): %d accuracy\n", bestIOUs[i],faces[i].x,faces[i].y,faces[i].width,faces[i].width);
 		}else {
 			FP++;
-			printf("False P found @ (%d,%d,%d,%d): %f accuracy\n", bestIOUs[i],faces[i].x,faces[i].y,faces[i].width,faces[i].height);
+			printf("False P found @ (%f,%d,%d,%d): %d accuracy\n", bestIOUs[i],faces[i].x,faces[i].y,faces[i].width,faces[i].height);
 		}
 
 	}
@@ -187,12 +237,12 @@ void iouVal(vector<Rect> faces){
 		HoughFoundRect.push_back(Rect(strongest[0].x,strongest[0].y,strongest[0].width,strongest[0].width));
 	}
 
-	for ( int j = 0; j < faces.size(); j++ ){	//loop through the truth boundries
+	for ( int j = 0; j < HoughFoundRect.size(); j++ ){	//loop through the truth boundries
 		IOUs.clear();
-		for( int i = 0; i < HoughFoundRect.size(); i++ )		// loop through the generated boundries
+		for( int i = 0; i < faces.size(); i++ )		// loop through the generated boundries
 		{
-			Rect inter = faces[j] & HoughFoundRect[i];	//get intersection
-			Rect unions = faces[j] | HoughFoundRect[i];	//get union
+			Rect inter = faces[i] & HoughFoundRect[j];	//get intersection
+			Rect unions = faces[i] | HoughFoundRect[j];	//get union
 			//printf("Inter area: %d.  Union area: %d.   IOU: %f\n", inter.area(), unions.area(), (float)inter.area()/(float)unions.area());
 			Area = (float)inter.area() / (float)unions.area();
 			if(Area> maxArea)
@@ -212,14 +262,14 @@ void iouVal(vector<Rect> faces){
 	int FP = 0;	//count flase positives
 	//get recall (TPR)
 	for (int i = 0; i < bestIOUs.size(); i++){
-		if (bestIOUs[i] > 0.8){	//if UOI val is > 0.5 count as true positive
+		if (bestIOUs[i] > 0.45){	//if UOI val is > 0.5 count as true positive
 
-			detect.push_back(Rect(faces[i].x,faces[i].y,faces[i].width,faces[i].width));
+			detect.push_back(Rect(HoughFoundRect[i].x,HoughFoundRect[i].y,HoughFoundRect[i].width,HoughFoundRect[i].height));
 			TP++;
-			printf("True P found @ (%d,%d,%d,%d): %f accuracy\n", bestIOUs[i],faces[i].x,faces[i].y,faces[i].width,faces[i].width);
+			printf("True P found @ (%f,%d,%d,%d): %d accuracy\n", bestIOUs[i],faces[i].x,faces[i].y,faces[i].width,faces[i].width);
 		}else {
 			FP++;
-			printf("False P found @ (%d,%d,%d,%d): %f accuracy\n", bestIOUs[i],faces[i].x,faces[i].y,faces[i].width,faces[i].height);
+			printf("False P found @ (%f,%d,%d,%d): %d accuracy\n", bestIOUs[i],faces[i].x,faces[i].y,faces[i].width,faces[i].height);
 		}
 
 	}
@@ -250,11 +300,13 @@ void detectAndDisplay( Mat frame )
 	std::cout << faces.size() << std::endl;
 
        // 4. Draw box around faces found
-	// for( int i = 0; i < faces.size(); i++ )
-	// {
-	// 	rectangle(frame, Point(faces[i].x, faces[i].y), Point(faces[i].x + faces[i].width, faces[i].y + faces[i].height), Scalar( 0, 255, 0 ), 2);
-	// }
-
+	 /*
+	 for( int i = 0; i < faces.size(); i++ )
+	 {
+		 printf("drawing VJ boxes\n");
+	 	rectangle(frame, Point(faces[i].x, faces[i].y), Point(faces[i].x + faces[i].width, faces[i].y + faces[i].height), Scalar( 0, 255, 0 ), 2);
+	 }
+	 */
 	iouVal(faces);
 
 
@@ -442,7 +494,7 @@ Mat houghCircles(Mat grad, Mat dir, Mat img){
       if(vote > voteTh){  //Checking if vote is above the threshold
 
 				//Want to only add the circles with the strongest votes within a specific area
-				int radiusThreshold = 50; //threshold for how close the radii can be to eachother
+				int radiusThreshold = grad.rows/10; //threshold for how close the radii can be to eachother
 				int replaced = 0;	//checks if the current point replaced any existing points due to proximity
 
 				// Get the x,r and radius of the currectly stored detected circles
@@ -454,29 +506,32 @@ Mat houghCircles(Mat grad, Mat dir, Mat img){
 						int foundX = HoughFoundRect[i].x + foundR;
 						int foundY = HoughFoundRect[i].y + foundR;
 
-						if(	 y > foundY	- radiusThreshold
+						if(  y > foundY	- radiusThreshold
 							&& y < foundY + radiusThreshold
 							&& x > foundX	- radiusThreshold
 							&& x < foundX	+ radiusThreshold
-							&& acc[foundY][foundX][foundR] < vote)
+							)
 							{
-								printf("found better...\n" );
-
-								int ry = y - radius;
-								int rx = x - radius;
-								int rht = radius*2;
-								int rwt = radius*2;
-								HoughFoundRect[i] = Rect(rx,ry,rht,rwt);
+								if (acc[foundY][foundX][foundR] < vote){
+									//printf("changing to better circle\n");
+									int ry = y - radius;
+									int rx = x - radius;
+									int rht = radius*2;
+									int rwt = radius*2;
+									HoughFoundRect.at(i) = Rect(rx,ry,rht,rwt);
+									}
 								replaced = 1;
 							}
 						}
 	      }
+				//if we get to the end of all founs so far w/o a circle near by, add as new circle detected
 				if (replaced == 0){
+					//printf("adding new circle\n");
 					int ry = y - radius;
 					int rx = x - radius;
 					int rht = radius*2;
 					int rwt = radius*2;
-					HoughFoundRect.push_back(Rect(rx,ry,rht,rwt)); //send all circle above threshold
+					HoughFoundRect.push_back(Rect(rx,ry,rht,rwt)); //add new circle
 				}
 
 	      if(vote > max_Vote){  //Storing the point with the maximim vote in the entire image
@@ -513,7 +568,7 @@ Mat houghCircles(Mat grad, Mat dir, Mat img){
 
   hough2D.convertTo(hough2D,CV_8UC1);   //Roundind off pixel values
   //std::cout << hough2D << '\n';         //printing hough space pixel values
-  imshow("Hough 2d", hough2D);          //displaying hough space
+  //imshow("Hough 2d", hough2D);          //displaying hough space
   imwrite("Hough 2d.jpg", hough2D);     //storing hough space
   hough2D.release();
   return img_h;
@@ -532,7 +587,7 @@ Mat threshold(Mat grad)
       thresh.at<float>(y,x) = (pix > pixTh)? 255 : 0;
     }
   }
-  imshow("Gradient Magnitude after thresholding", thresh);
+  //imshow("Gradient Magnitude after thresholding", thresh);
   return thresh;
 
 }
