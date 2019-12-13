@@ -1,3 +1,0 @@
-/home/hobie/Documents/Comp Vision/Test/CMakeFiles/rebuild_cache.dir
-/home/hobie/Documents/Comp Vision/Test/CMakeFiles/Test.dir
-/home/hobie/Documents/Comp Vision/Test/CMakeFiles/edit_cache.dir

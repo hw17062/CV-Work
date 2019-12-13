@@ -1,3 +1,0 @@
-/home/hobie/Documents/Comp Vision/Gen-Display/CMakeFiles/rebuild_cache.dir
-/home/hobie/Documents/Comp Vision/Gen-Display/CMakeFiles/Display.dir
-/home/hobie/Documents/Comp Vision/Gen-Display/CMakeFiles/edit_cache.dir

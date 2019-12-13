@@ -1,3 +1,0 @@
-/home/hobie/Documents/Comp Vision/Lab 2/CMakeFiles/rebuild_cache.dir
-/home/hobie/Documents/Comp Vision/Lab 2/CMakeFiles/convolution.dir
-/home/hobie/Documents/Comp Vision/Lab 2/CMakeFiles/edit_cache.dir

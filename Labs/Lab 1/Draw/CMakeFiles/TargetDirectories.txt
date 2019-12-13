@@ -1,3 +1,0 @@
-/home/hobie/Documents/Comp Vision/Draw/CMakeFiles/rebuild_cache.dir
-/home/hobie/Documents/Comp Vision/Draw/CMakeFiles/Draw.dir
-/home/hobie/Documents/Comp Vision/Draw/CMakeFiles/edit_cache.dir

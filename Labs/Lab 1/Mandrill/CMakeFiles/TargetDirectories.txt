@@ -1,3 +1,0 @@
-/home/hobie/Documents/Comp Vision/Mandrill/CMakeFiles/rebuild_cache.dir
-/home/hobie/Documents/Comp Vision/Mandrill/CMakeFiles/Mandrill.dir
-/home/hobie/Documents/Comp Vision/Mandrill/CMakeFiles/edit_cache.dir
