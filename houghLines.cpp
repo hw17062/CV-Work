@@ -133,14 +133,14 @@ Mat houghLines(Mat grad, Mat dir, Mat img)
   int x1,x2,y1,y2;
   for(int index = 0 ; index < pair.size() ; index++)
   {
-    rho = pair[index].x - diagonal;
+    rho = pair[index].x ;
     theta = pair[index].y * (M_PI/180);
 
-    y1 = rho*sin(theta) + 100 * cos(theta);
-    y2 = rho*sin(theta) - 100 * cos(theta);
+    y1 = rho*sin(theta) + 1000 * cos(theta);
+    y2 = rho*sin(theta) - 1000 * cos(theta);
 
-    x1 = rho*cos(theta) - 100 * sin(theta);
-    x2 = rho*cos(theta) + 100 * sin(theta);
+    x1 = rho*cos(theta) - 1000 * sin(theta);
+    x2 = rho*cos(theta) + 1000 * sin(theta);
 
     //if(x1 > 0 && x1 < grad.rows && x2 > 0 && x2 < grad.rows)
       line( img_h, Point(x1,y1), Point(x2, y2), cvScalar(0,0,255),1);
@@ -184,7 +184,7 @@ Mat houghLines(Mat grad, Mat dir, Mat img)
     {
       if (intersection.at<float>(y,x) > maxi){
         maxi = intersection.at<float>(y,x);
-    //imwrite("Gradient Magnitude.jpg", grad);    max_Y = y;
+        max_Y = y;
         max_X = x;
       }
     }
