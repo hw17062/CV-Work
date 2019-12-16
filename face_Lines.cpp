@@ -40,7 +40,7 @@ vector<Rect> detect;	//final detection
 vector<Rect> strongest;	//circles
 vector<Point> intersectionVec; //lines
 CascadeClassifier cascade;
-
+int imageNum;
 
 /** @function main */
 int main( int argc, const char** argv )
@@ -51,28 +51,69 @@ int main( int argc, const char** argv )
 	// 2. Load the Strong Classifier in a structure called `Cascade'
 	if( !cascade.load( cascade_name ) ){ printf("--(!)Error loading\n"); return -1; };
 	vector<Rect> ground;
-	// Add in ground truths
-	//ground.push_back(Rect(420,0,210,220));   //img0
-	// ground.push_back(Rect(165,100,255,250));   //img1
-	// ground.push_back(Rect(90,85,110,110));     //img2
- 	//ground.push_back(Rect(310,135,90,95));		 //img3
-	// ground.push_back(Rect(155,65,380-155,335-65)); //img4
-	// ground.push_back(Rect(415,125,550-415,270-125));	//img 5
-	 ground.push_back(Rect(205,110,280-205,190-110));	//img 6
-	// ground.push_back(Rect(230,150,410-230,335-140));	//img 7
-	// ground.push_back(Rect(830,200,970-830,350-200));	//img 8
-	// ground.push_back(Rect(60,240,130-60,350-240));	//img 8
-	// ground.push_back(Rect(170,15,465-170,320-15));	//img 9
-	//ground.push_back(Rect(80,90,195-80,230-90));	//img 10
-	// ground.push_back(Rect(575,120,640-575,220-120));	//img 10
-	// ground.push_back(Rect(914,140,955-914,220-130));	//img 10
- 	//ground.push_back(Rect(165,95,240-165,180-95));	//img 11
-	// ground.push_back(Rect(150,60,220-150,230-60));	//img 12
-	// ground.push_back(Rect(255,100,420-255,270-100));	//img 13
-	// ground.push_back(Rect(105,85,260-105,240-85));	//img 14
-	// ground.push_back(Rect(970,80,1125-970,235-80));	//img 14
-	// ground.push_back(Rect(120,35,300-120,210-35));	//img 15
-
+	//get image numbers
+	string s = argv[1];
+	if (s.length() == (int)9){
+		imageNum = s[4] - '0';
+	}else if (s.length() == 10){
+		imageNum = (s[4] - '0') * 10 + (s[5] - '0');
+	}
+	// printf("image length %d, image num = %d from %c\n",s.length(), imageNum, s[4]);
+	// Add in ground HoughFoundRect
+	switch(imageNum){
+		case 0:
+			ground.push_back(Rect(420,0,210,220));   //img0
+			break;
+		case 1:
+			ground.push_back(Rect(175,110,235,230));   //img1
+			break;
+		case 2:
+			ground.push_back(Rect(90,85,110,110));     //img
+			break;
+		case 3:
+			ground.push_back(Rect(310,135,90,95));		 //img3
+			break;
+		case 4:
+			ground.push_back(Rect(155,65,380-155,335-65)); //img4
+			break;
+		case 5:
+			ground.push_back(Rect(415,125,550-415,270-125));	//img 5
+			break;
+		case 6:
+			ground.push_back(Rect(205,110,280-205,190-110));	//img 6
+			break;
+		case 7:
+			ground.push_back(Rect(230,150,410-230,335-140));	//img 7
+			break;
+		case 8:
+			ground.push_back(Rect(830,200,970-830,350-200));	//img 8
+			ground.push_back(Rect(60,240,130-60,350-240));	//img 8
+			break;
+		case 9:
+			ground.push_back(Rect(170,15,465-170,320-15));	//img 9
+			break;
+		case 10:
+			ground.push_back(Rect(80,90,195-80,230-90));	//img 10
+			ground.push_back(Rect(575,120,640-575,220-120));	//img 10
+			ground.push_back(Rect(914,140,955-914,220-130));	//img 10
+			break;
+		case 11:
+			ground.push_back(Rect(165,95,240-165,180-95));	//img 11
+			break;
+		case 12:
+			ground.push_back(Rect(150,60,220-150,230-60));	//img 12
+			break;
+		case 13:
+			ground.push_back(Rect(255,100,420-255,270-100));	//img 13
+			break;
+		case 14:
+			ground.push_back(Rect(105,85,260-105,240-85));	//img 14
+			ground.push_back(Rect(970,80,1125-970,235-80));	//img 14
+			break;
+		case 15:
+			ground.push_back(Rect(120,35,300-120,210-35));	//img 15
+			break;
+	}
 	Mat img = frame.clone();
 	Mat img2=img.clone();
 
@@ -102,7 +143,7 @@ int main( int argc, const char** argv )
 
 	// 4. Save Result Image
 	imshow("Final conclusion", frame);
-	imwrite( "detected.jpg", frame );
+	imwrite( "detected" + to_string(imageNum) + ".jpg", frame );
 	waitKey(0);
 
 	return 0;
@@ -357,14 +398,14 @@ Mat houghLines( Mat img )
   //*************************************************************************************************************************************************************
 normalize(houghSpace, houghSpace, 0, 255, NORM_MINMAX);houghSpace.convertTo(houghSpace,CV_8UC1);
   imshow("Hough Space LINES ", houghSpace);
-  imwrite("Hough Space LINES.jpg", houghSpace);
+  imwrite("Hough Space LINES " + to_string(imageNum) + ".jpg", houghSpace);
   //normalize(intersectionSpace, intersectionSpace, 0, 255, NORM_MINMAX);
   intersectionSpace.convertTo(intersectionSpace,CV_8UC1);
   //cout << intersectionSpace << '\n';
   imshow("Intersection Space LINES ", intersectionSpace);
-  imwrite("Intersection Space LINES.jpg", intersectionSpace);
+  imwrite("Intersection Space LINES " + to_string(imageNum) + ".jpg", intersectionSpace);
   imshow("hough Lines", img_h);
-  imwrite("hough Lines.jpg", img_h);
+  imwrite("hough Lines " + to_string(imageNum) + ".jpg", img_h);
 
   return img_h;
 }
@@ -484,12 +525,12 @@ Mat houghCircles(Mat img){
   hough2D.convertTo(hough2D,CV_8UC1);   //Roundind off pixel values
   //std::cout << hough2D << '\n';         //printing hough space pixel values
   imshow("Hough 2d", hough2D);          //displaying hough space
-  imwrite("Hough 2d.jpg", hough2D);     //storing hough space
+  imwrite("Hough 2d" + to_string(imageNum) + ".jpg", hough2D);     //storing hough space
   hough2D.release();
 
 	//img_h.convertTo(img_h,CV_8UC1);
   imshow("hough circle", img_h);
-  imwrite("Hough Circles.jpg", img_h);
+  imwrite("Hough Circles" + to_string(imageNum) + ".jpg", img_h);
   return img_h;
 }
 
@@ -507,7 +548,7 @@ Mat threshold(Mat grad)
     }
   }
   imshow("Gradient Magnitude after thresholding", thresh);
-	imwrite("Threshold.jpg", thresh);
+	imwrite("Threshold" + to_string(imageNum) + ".jpg", thresh);
   return thresh;
 
 }
